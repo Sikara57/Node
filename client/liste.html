@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Liste IFA</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <script
+			  src="https://code.jquery.com/jquery-3.2.1.min.js"
+			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			  crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+	</head>
+	<body>
+		<h1>LISTE IFA</h1>
+		<div id="wrap">
+			<!-- Barre de contrôle -->
+			<div id="control"><i id="add" class="material-icons">add</i></div>
+			<!-- Fenetre resultat contrôle -->
+			<div id="res_control" class="hidden">
+				<i id="close" class="material-icons">close</i>
+				<form  id="formulaire" action="">
+					<div class="left">
+						<input type="text" name="nom" id="nom"><label for="nom">Nom</label>
+						<input type="text" name="prenom" id="prenom"><label for="prenom">Prénom</label>
+						<input type="text" name="javascript" id="javascript"><label for="javascript">Javascript</label>
+						<input type="text" name="fav_web" id="fav_web"><label for="fav_web">Site Favoris</label>
+						<textarea class="materialize-textarea" name="fav_web_why" id="fav_web_why" cols="30" rows="10"></textarea><label for="fav_web_why">Pourquoi ?</label>
+					</div>
+					<div class="right">
+						<input type="text" name="fav_app" id="fav_app"><label for="fav_app">Application Favorite</label>
+						<textarea name="fav_app_why" id="fav_app_why" cols="30" rows="10" class="materialize-textarea"></textarea><label for="">Pourquoi ?</label>
+						<input type="text" name="before_ifa" id="before_ifa"><label for="before_ifa">Avant l'ifa</label>
+						<textarea name="why_ifa" id="why_ifa" cols="30" rows="10" class="materialize-textarea"></textarea><label for="why_ifa">Pourquoi ?</label>
+						<input type="email" name="mail" id="mail"><label for="mail">Contact Mail</label>
+					</div>
+				</form>
+				<div class="clear"></div>
+				<div class="validation_form"><button id='validation'><i id="valider" class="material-icons">check</i></button></div>
+			</div>
+
+			
+		</div>
+		<script type="text/javascript" src="/js/app.js"></script>
+	</body>
+</html>

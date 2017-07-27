@@ -1,0 +1,143 @@
+.eleve:hover
+{
+	background-color:lightseagreen;
+}
+
+ul
+{
+	padding:0;
+	list-style: none;
+}
+
+h1
+{
+	text-align: center;
+}
+
+#wrap, #wrap_profil
+{
+	position:relative;
+	z-index:1;
+	background-color: #cdcdcd;
+	width:600px;
+	margin:10px auto;
+	padding:30px;
+	border-radius:20px;
+}
+
+li i
+{
+	float:right;
+}
+
+#control
+{
+	position: relative;
+	z-index: 1;
+
+}
+
+#res_control
+{
+	position:absolute;
+	left:-240px;
+	top:10px;
+	padding:30px;
+	z-index:2;
+	width:850px;
+	height:600px;
+	background-color: rgba(123,123,123,0.9);
+	border-radius: 20px;
+	font-weight: bold;
+}
+
+.hidden
+{
+	display:none;
+}
+
+.visible
+{
+	display:block;
+}
+
+#close
+{
+	float:right;
+}
+
+label
+{
+	color:white;
+}
+
+.validation_form
+{
+	margin-top:30px;
+	text-align:center;
+	margin:auto;
+	width:100px;
+}
+
+.left
+{
+	float:left;
+	width:300px;
+}
+
+.right
+{
+	float:right;
+	width:300px;
+}
+
+.clear
+{
+	clear:both;
+}
+
+li i
+{
+	margin-left: 15px;
+}
+
+/* ----------------------------- */
+/*            Profil             */
+/* ----------------------------- */
+
+#identite
+{
+	margin-top:30px;
+    width:80px;
+    float: left;
+}
+
+#nom
+{
+    float:left;
+    padding-top: 30px;
+    margin-left: 20px;
+}
+
+.label 
+{
+    display: inline-block;
+    margin-right:20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.site, .application, .ifa
+{
+    margin-bottom:10px;
+    margin-top: 10px;
+    border: 1px solid white;
+    height:120px;
+    padding:15px;
+}
+
+#wrap_profil i
+{
+	position:relative;
+	margin-left:-160px;
+}

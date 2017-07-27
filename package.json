@@ -1,0 +1,24 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "first server node",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Daniel GIRARD",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.30"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
