@@ -20,7 +20,7 @@ promise.then(function(db){
 
 app.use(bodyParser.urlencoded({
     extended: true
-}))
+}));
 
 app.set('views','./views');
 app.set('view engine','jade');
@@ -76,6 +76,103 @@ app.get('/api/liste/:id', function(req, res) {
         }
     });
 });
+
+
+app.post('/ajout',function(req,res){
+    //console.log('prout');
+    var newUser=new Eleve({
+        nom:req.body.nom,
+        prenom:req.body.prenom,
+        javascript:req.body.javascript,
+        fav_web:req.body.fav_web,
+        fav_web_why:req.body.fav_web_why,
+        fav_app:req.body.fav_app,
+        fav_app_why:req.body.fav_app_why,
+        before_ifa:req.body.before_ifa,
+        why_ifa:req.body.why_ifa,
+        mail:req.body.mail
+    });
+    newUser.save(function(err,objet){
+        if(err){
+            console.log(err);
+            return res.send(500);
+        }else {
+            res.redirect('/');
+        }
+    });
+});
+
+
+app.post('/modify',function(req,res){
+    var modifyUser={};
+    var position=0;
+    for(var key in req.body){
+        
+        pos=key.indexOf('_');
+        var key2=key.substr(0,pos);
+        switch(key2)
+        {
+            case 'favweb':
+            {
+                modifyUser['fav_web']=req.body[key]; 
+                break;
+            }
+            case 'favwebwhy':
+            {
+                modifyUser['fav_web_why']=req.body[key];
+                break;
+            }
+            case 'favapp':
+            {
+                modifyUser['fav_app']=req.body[key];
+                break;
+            }
+            case 'favappwhy':
+            {
+                modifyUser['fav_app_why']=req.body[key];
+                break;
+            }
+            case 'beforeifa':
+            {
+                modifyUser['before_ifa']=req.body[key]; 
+                break;
+            }
+            case 'whyifa':
+            {
+                modifyUser['why_ifa']=req.body[key]; 
+                break; 
+            }
+            default:
+            {
+                modifyUser[key2]=req.body[key]; 
+            }
+        }
+               
+    }
+    //console.log(modifyUser);
+    Eleve.findByIdAndUpdate({"_id":req.body.idEleve}, modifyUser,{multi:false}, function(err, objet){
+        if(err){
+            console.log(err);
+            return res.send(500);
+        }else{
+            res.redirect('/');
+        }
+    });
+});
+
+
+app.get('/del/:id', function(req,res){
+    //console.log(req.params.id);
+    Eleve.findByIdAndRemove({"_id": req.params.id}, function(err,objet){
+        if(err){
+            console.log(err);
+            return res.send(500);
+        }else{
+            res.redirect('/');
+        }
+    });
+});
+
 
 //avec jade
 app.get('/api/liste/jade/:id', function(req, res) {

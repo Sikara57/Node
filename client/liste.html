@@ -20,24 +20,47 @@
 			<!-- Fenetre resultat contrôle -->
 			<div id="res_control" class="hidden">
 				<i id="close" class="material-icons">close</i>
-				<form  id="formulaire" action="">
+				<form  name="formulaire" id="formulaire" action="/ajout" method="POST" enctype="text/html">
 					<div class="left">
-						<input type="text" name="nom" id="nom"><label for="nom">Nom</label>
-						<input type="text" name="prenom" id="prenom"><label for="prenom">Prénom</label>
-						<input type="text" name="javascript" id="javascript"><label for="javascript">Javascript</label>
-						<input type="text" name="fav_web" id="fav_web"><label for="fav_web">Site Favoris</label>
-						<textarea class="materialize-textarea" name="fav_web_why" id="fav_web_why" cols="30" rows="10"></textarea><label for="fav_web_why">Pourquoi ?</label>
+						<input type="text" name="nom" id="nom" placeholder=""><label for="nom">Nom</label>
+						<input type="text" name="prenom" id="prenom" placeholder=""><label for="prenom">Prénom</label>
+						<input type="text" name="javascript" id="javascript" placeholder=""><label for="javascript">Javascript</label>
+						<input type="text" name="fav_web" id="fav_web" placeholder=""><label for="fav_web">Site Favoris</label>
+						<textarea class="materialize-textarea" name="fav_web_why" id="fav_web_why" cols="30" rows="10" placeholder=""></textarea><label for="fav_web_why">Pourquoi ?</label>
 					</div>
 					<div class="right">
-						<input type="text" name="fav_app" id="fav_app"><label for="fav_app">Application Favorite</label>
-						<textarea name="fav_app_why" id="fav_app_why" cols="30" rows="10" class="materialize-textarea"></textarea><label for="">Pourquoi ?</label>
-						<input type="text" name="before_ifa" id="before_ifa"><label for="before_ifa">Avant l'ifa</label>
+						<input type="text" name="fav_app" id="fav_app" placeholder=""><label for="fav_app">Application Favorite</label>
+						<textarea name="fav_app_why" id="fav_app_why" cols="30" rows="10" class="materialize-textarea" placeholder=""></textarea><label for="">Pourquoi ?</label>
+						<input type="text" name="before_ifa" id="before_ifa" placeholder=""><label for="before_ifa">Avant l'ifa</label>
 						<textarea name="why_ifa" id="why_ifa" cols="30" rows="10" class="materialize-textarea"></textarea><label for="why_ifa">Pourquoi ?</label>
-						<input type="email" name="mail" id="mail"><label for="mail">Contact Mail</label>
+						<input type="email" name="mail" id="mail"><label for="mail" placeholder="">Contact Mail</label>
 					</div>
 				</form>
 				<div class="clear"></div>
-				<div class="validation_form"><button id='validation'><i id="valider" class="material-icons">check</i></button></div>
+				<div id="validation_form" class="validation_form"><button type="submit" id='validation'><i id="valider" class="material-icons">check</i></button></div>
+			</div>
+
+			<div id="res_control_modif" class="hidden">
+				<i id="close_modif" class="material-icons">close</i>
+				<form  name="formulaire_modif" id="formulaire_modif" action="/modify" method="POST" enctype="text/html">
+					<input type="hidden" name="idEleve" id="idEleve">
+					<div class="left">
+						<input type="text" name="nom_modif" id="nom_modif" placeholder=""><label for="nom">Nom</label>
+						<input type="text" name="prenom_modif" id="prenom_modif" placeholder=""><label for="prenom">Prénom</label>
+						<input type="text" name="javascript_modif" id="javascript_modif" placeholder=""><label for="javascript">Javascript</label>
+						<input type="text" name="favweb_modif" id="fav_web_modif" placeholder=""><label for="fav_web">Site Favoris</label>
+						<textarea class="materialize-textarea" name="favwebwhy_modif_modif" id="fav_web_why_modif" cols="30" rows="10" placeholder=""></textarea><label for="fav_web_why">Pourquoi ?</label>
+					</div>
+					<div class="right">
+						<input type="text" name="favapp_modif" id="fav_app_modif" placeholder=""><label for="fav_app">Application Favorite</label>
+						<textarea name="favappwhy_modif" id="fav_app_why_modif" cols="30" rows="10" class="materialize-textarea" placeholder=""></textarea><label for="">Pourquoi ?</label>
+						<input type="text" name="beforeifa_modif" id="before_ifa_modif" placeholder=""><label for="before_ifa">Avant l'ifa</label>
+						<textarea name="whyifa_modif" id="why_ifa_modif" cols="30" rows="10" class="materialize-textarea"></textarea><label for="why_ifa">Pourquoi ?</label>
+						<input type="email" name="mail_modif" id="mail_modif"><label for="mail" placeholder="">Contact Mail</label>
+					</div>
+				</form>
+				<div class="clear"></div>
+				<div id="modification_form" class="modification_form"><button type="submit" id="modification"><i id="modifier" class="material-icons">edit</i></button></div>
 			</div>
 
 			

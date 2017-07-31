@@ -37,10 +37,10 @@ li i
 
 }
 
-#res_control
+#res_control, #res_control_modif
 {
 	position:absolute;
-	left:-240px;
+	left:-140px;
 	top:10px;
 	padding:30px;
 	z-index:2;
@@ -61,7 +61,7 @@ li i
 	display:block;
 }
 
-#close
+#close, #close_modif
 {
 	float:right;
 }
@@ -71,7 +71,7 @@ label
 	color:white;
 }
 
-.validation_form
+.validation_form, .modification_form
 {
 	margin-top:30px;
 	text-align:center;
@@ -112,12 +112,12 @@ li i
     float: left;
 }
 
-#nom
+/*#nom
 {
     float:left;
     padding-top: 30px;
     margin-left: 20px;
-}
+}*/
 
 .label 
 {
@@ -139,5 +139,5 @@ li i
 #wrap_profil i
 {
 	position:relative;
-	margin-left:-160px;
+	margin-left:-80px;
 }
