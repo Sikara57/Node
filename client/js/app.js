@@ -51,7 +51,7 @@ function addBtnEdit(elt)
 function bindList(eleve)
 {
 	var monLi = document.createElement("li");
-    monLi.innerHTML = eleve.nom + ' ' + eleve.prenom ;
+    monLi.innerHTML ='<span id="'+eleve.nom+'">'+ eleve.nom + '</span><span id="'+eleve.prenom+'"> ' + eleve.prenom+'</span>';
     monLi.classList.add("eleve");
 	monLi.setAttribute("data-idEleve", eleve._id);
 	monLi.classList.add('collection-item');
@@ -101,45 +101,133 @@ function detectClose(event)
 
 function detectSubmit(event)
 {	
-	
+	var myResControl=document.getElementById('res_control');
 	var monForm=document.getElementById('formulaire').elements;
 	var newUsr={};
 
-	//console.log(newUsr);
 
 	_.forIn(monForm, function(item){
 		newUsr[item.name]=item.value;
 	});
 	
-	data.push(newUsr);
-	//console.table(data);
-	//detectClose('click');
-	//console.log(monForm.elements[0].value)
-
-	/* partie qui sera surement supprimé par la suite */
 	bindList(newUsr);
-	/* retour à du utile */
-	document.forms['formulaire'].submit();
+	// console.log(JSON.stringify(newUsr));
+
+	/* retour à du utile : Ma version */
+	//document.forms['formulaire'].submit();
+	//document.forms['formulaire'].reset();
+
+	var postUser = new XMLHttpRequest();
+	postUser.open('POST', "http://localhost:3000/ajout", true);
+	postUser.setRequestHeader("Content-type","application/json");
+	
+	postUser.onreadystatechange== function(){
+		if(postUser.readyState== XMLHttpRequest.DONE && postUser.status==200){
+			console.log('req ok');
+		}
+	}
+
+	postUser.send(JSON.stringify(newUsr));
 	document.forms['formulaire'].reset();
+	myResControl.classList.remove('visible');
+	myResControl.classList.add('hidden');
 }
 
 function detectSubmitModify()
 {
+	var myResControl=document.getElementById('res_control_modif');
 	var monForm=document.getElementById('formulaire_modif').elements;
 	var newUsr={};
+	var position=0;
+	//var name='';
 
 	_.forIn(monForm, function(x,y){
-		if(x.value!='')
+		//console.log(x.placeholder);
+		if(x.name=='idEleve')
 		{
-			newUsr[x.name]=x.value;
+			newUsr['_id']=x.value;
 		}
-		else
-		{
-			monForm[y].disabled=true;
+		else if(x.value!='')
+		{	
+			name=x.name;
+			pos=name.indexOf('_');
+			var key2=name.substr(0,pos);
+			switch(key2)
+			{
+				case 'favweb':
+				{
+					newUsr['fav_web']=x.value;
+
+					break;
+				}
+				case 'favwebwhy':
+				{
+					newUsr['fav_web_why']=x.value;
+					break;
+				}
+				case 'favapp':
+				{
+					newUsr['fav_app']=x.value;
+					break;
+				}
+				case 'favappwhy':
+				{
+					newUsr['fav_app_why']=x.value;
+					break;
+				}
+				case 'beforeifa':
+				{
+					newUsr['before_ifa']=x.value; 
+					break;
+				}
+				case 'whyifa':
+				{
+					newUsr['why_ifa']=x.value; 
+					break; 
+				}
+				case 'contactmail':
+				{
+					newUsr['contact_mail']=x.value; 
+					break; 
+				}
+				case 'nom':
+				{
+					newUsr[key2]=x.value;
+					var monSpan=document.getElementById(x.placeholder);
+					monSpan.innerHTML=x.value;
+					break;
+				}
+				case 'prenom':
+				{
+					newUsr[key2]=x.value;
+					var monSpan=document.getElementById(x.placeholder);
+					monSpan.innerHTML=x.value;
+					break;
+				}
+				default:
+				{
+				
+				}
+			}
 		}
 	});
-	document.forms['formulaire_modif'].submit();
+
+	//console.log(newUsr);
+	var postUser = new XMLHttpRequest();
+	postUser.open('POST', "http://localhost:3000/modify", true);
+	postUser.setRequestHeader("Content-type","application/json");
+	
+	postUser.onreadystatechange== function(){
+		if(postUser.readyState== XMLHttpRequest.DONE && postUser.status==200){
+			console.log('req ok');
+		}
+	}
+
+	postUser.send(JSON.stringify(newUsr));
 	document.forms['formulaire_modif'].reset();
+	myResControl.classList.remove('visible');
+	myResControl.classList.add('hidden');
+
 }
 
 
@@ -197,7 +285,7 @@ function editEleve(event)
 			myBeforeIFA.setAttribute('placeholder',mareponseText.before_ifa);
 			var myWhyIFA=document.getElementById('why_ifa_modif');
 			myWhyIFA.setAttribute('placeholder',mareponseText.why_ifa);
-			var myMail=document.getElementById('mail_modif');
+			var myMail=document.getElementById('contactmail_modif');
 			myMail.setAttribute('placeholder',mareponseText.contact_mail);
 		}
 	}

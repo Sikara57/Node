@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(bodyParser.json());
+
 app.set('views','./views');
 app.set('view engine','jade');
 app.use('/js', express.static('./client/js'));
@@ -79,19 +81,8 @@ app.get('/api/liste/:id', function(req, res) {
 
 
 app.post('/ajout',function(req,res){
-    //console.log('prout');
-    var newUser=new Eleve({
-        nom:req.body.nom,
-        prenom:req.body.prenom,
-        javascript:req.body.javascript,
-        fav_web:req.body.fav_web,
-        fav_web_why:req.body.fav_web_why,
-        fav_app:req.body.fav_app,
-        fav_app_why:req.body.fav_app_why,
-        before_ifa:req.body.before_ifa,
-        why_ifa:req.body.why_ifa,
-        contact_mail:req.body.mail
-    });
+    //console.log(req.body);
+    var newUser= new Eleve(req.body);
     newUser.save(function(err,objet){
         if(err){
             console.log(err);
@@ -104,53 +95,10 @@ app.post('/ajout',function(req,res){
 
 
 app.post('/modify',function(req,res){
-    var modifyUser={};
-    var position=0;
-    for(var key in req.body){
-        
-        pos=key.indexOf('_');
-        var key2=key.substr(0,pos);
-        switch(key2)
-        {
-            case 'favweb':
-            {
-                modifyUser['fav_web']=req.body[key]; 
-                break;
-            }
-            case 'favwebwhy':
-            {
-                modifyUser['fav_web_why']=req.body[key];
-                break;
-            }
-            case 'favapp':
-            {
-                modifyUser['fav_app']=req.body[key];
-                break;
-            }
-            case 'favappwhy':
-            {
-                modifyUser['fav_app_why']=req.body[key];
-                break;
-            }
-            case 'beforeifa':
-            {
-                modifyUser['before_ifa']=req.body[key]; 
-                break;
-            }
-            case 'whyifa':
-            {
-                modifyUser['why_ifa']=req.body[key]; 
-                break; 
-            }
-            default:
-            {
-                modifyUser[key2]=req.body[key]; 
-            }
-        }
-               
-    }
-    //console.log(modifyUser);
-    Eleve.findByIdAndUpdate({"_id":req.body.idEleve}, modifyUser,{multi:false}, function(err, objet){
+   
+   console.log(req.body);
+   var modifyUser=req.body;
+    Eleve.findByIdAndUpdate({"_id":modifyUser['_id']}, modifyUser,{multi:false}, function(err, objet){
         if(err){
             console.log(err);
             return res.send(500);
