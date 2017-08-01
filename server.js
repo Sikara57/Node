@@ -90,7 +90,7 @@ app.post('/ajout',function(req,res){
         fav_app_why:req.body.fav_app_why,
         before_ifa:req.body.before_ifa,
         why_ifa:req.body.why_ifa,
-        mail:req.body.mail
+        contact_mail:req.body.mail
     });
     newUser.save(function(err,objet){
         if(err){

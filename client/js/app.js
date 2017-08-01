@@ -9,11 +9,11 @@ var monSubmit=document.getElementById('validation');
 var monSubmitModify=document.getElementById('modification');
 
 
-monSubmit.addEventListener("click",detectSubmit);
-monSubmitModify.addEventListener("click",detectSubmitModify);
+monSubmit.addEventListener('click',detectSubmit);
+monSubmitModify.addEventListener('click',detectSubmitModify);
 monClose.addEventListener('click',detectClose);
 monCloseEdit.addEventListener('click',detectClose);
-monAdd.addEventListener("click",detectAjout);
+monAdd.addEventListener('click',detectAjout);
 
 function addBtnProfile(elem) 
 {
@@ -113,7 +113,7 @@ function detectSubmit(event)
 	
 	data.push(newUsr);
 	//console.table(data);
-	detectClose();
+	//detectClose('click');
 	//console.log(monForm.elements[0].value)
 
 	/* partie qui sera surement supprimé par la suite */
