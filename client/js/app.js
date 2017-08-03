@@ -234,11 +234,22 @@ function detectSubmitModify()
 function deleteEleve(event)
 {
 	var myTarget = event.target;
-	var eleveId = myTarget.parentNode.getAttribute("data-ideleve");
-	//console.log(eleveId);
-	url="/del/" +  eleveId;
-	// console.log(url);
-	window.location = url;
+	var myLi=myTarget.parentNode;
+	var eleveId = myLi.getAttribute("data-ideleve");
+	var eleveSupr = {"_id":eleveId};
+	//console.log(eleveSupr);
+	var postUser = new XMLHttpRequest();
+	postUser.open('POST', "http://localhost:3000/del", true);
+	postUser.setRequestHeader("Content-type","application/json");
+	
+	postUser.onreadystatechange== function(){
+		if(postUser.readyState== XMLHttpRequest.DONE && postUser.status==200){
+			console.log('req ok');
+		}
+	}
+
+	myLi.remove();
+	postUser.send(JSON.stringify(eleveSupr));
 }
 
 function editEleve(event)
@@ -257,7 +268,7 @@ function editEleve(event)
 	// je crée mon objet requete 
 	var marequete = new XMLHttpRequest();
 	// j'ouvre une requete get
-	marequete.open('GET', "http://localhost:3000/api/liste/"+eleveId, true);
+	marequete.open('POST', "http://localhost:3000/del", true);
 	// je lanche ma requete
 	marequete.send();
 	// on écoute ce qu'il se passe

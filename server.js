@@ -109,9 +109,9 @@ app.post('/modify',function(req,res){
 });
 
 
-app.get('/del/:id', function(req,res){
+app.post('/del', function(req,res){
     //console.log(req.params.id);
-    Eleve.findByIdAndRemove({"_id": req.params.id}, function(err,objet){
+    Eleve.findByIdAndRemove({"_id": req.body['_id']}, function(err,objet){
         if(err){
             console.log(err);
             return res.send(500);
