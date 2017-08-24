@@ -68,6 +68,7 @@ app.get('/api/liste', function(req, res) {
 
 // sans moteur de rendu
 app.get('/api/liste/:id', function(req, res) {
+    // console.log(req.params.id);
     Eleve.findOne({"_id": req.params.id}, function(err,objet){
         if(err){
             console.log(err);

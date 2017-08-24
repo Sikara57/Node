@@ -201,7 +201,12 @@ function detectSubmitModify()
 				{
 					newUsr[key2]=x.value;
 					var monSpan=document.getElementById(x.placeholder);
-					monSpan.innerHTML=x.value;
+					monSpan.innerHTML=' ' + x.value;
+					break;
+				}
+				case 'javascript':
+				{
+					newUsr[key2]=x.value;
 					break;
 				}
 				default:
@@ -212,7 +217,7 @@ function detectSubmitModify()
 		}
 	});
 
-	//console.log(newUsr);
+	// console.log(newUsr);
 	var postUser = new XMLHttpRequest();
 	postUser.open('POST', "http://localhost:3000/modify", true);
 	postUser.setRequestHeader("Content-type","application/json");
@@ -268,7 +273,7 @@ function editEleve(event)
 	// je crée mon objet requete 
 	var marequete = new XMLHttpRequest();
 	// j'ouvre une requete get
-	marequete.open('POST', "http://localhost:3000/del", true);
+	marequete.open('GET', "http://localhost:3000/api/liste/"+ eleveId, true);
 	// je lanche ma requete
 	marequete.send();
 	// on écoute ce qu'il se passe
@@ -278,6 +283,7 @@ function editEleve(event)
 		if(marequete.readyState == 4 && marequete.status == 200){
 			var mareponseText = marequete.responseText;
 			mareponseText = JSON.parse(mareponseText);
+			// console.log('prout');
 			var myNom=document.getElementById('nom_modif');
 			myNom.setAttribute('placeholder',mareponseText.nom);
 			var myPrenom=document.getElementById('prenom_modif');
